@@ -81,28 +81,35 @@ export default {
       note: null,
     };
   },
+  watch: {
+    $route() {
+      this.initializeNote();
+    },
+  },
   mounted() {},
   created() {
-    let noteId = this.$route.params.id;
-    if (noteId) {
-      let existingNote = this.$store.getters.allNotes.find(
-        (z) => z.id == noteId
-      );
-      this.note = { ...existingNote }; //copy existing note to remove vue change tracker
-    } else {
-      this.note = {
-        id: null,
-        title: "",
-        note: "",
-        createdOn: new Date().toLocaleDateString(),
-        done: false,
-        labels: [],
-      };
-    }
-
-    this.labelIds = this.note.labels && this.note.labels.map((z) => z.id);
+    this.initializeNote();
   },
   methods: {
+    initializeNote() {
+      let noteId = this.$route.params.id;
+      if (noteId) {
+        let existingNote = this.$store.getters.allNotes.find(
+          (z) => z.id == noteId
+        );
+        this.note = existingNote;
+      } else {
+        this.note = {
+          id: null,
+          title: "",
+          note: "",
+          createdOn: new Date().toLocaleDateString(),
+          done: false,
+          labels: [],
+        };
+      }
+      this.labelIds = this.note.labels && this.note.labels.map((z) => z.id);
+    },
     onSubmit(event) {
       event.preventDefault();
       this.note.labels = this.$store.getters.allLabels.filter((z) =>
