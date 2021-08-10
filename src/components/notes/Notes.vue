@@ -26,9 +26,6 @@
       ><i class="fa fa-plus"></i>
       </button>
     </div>
-     <div class="col-2">
-    <Labels></Labels>
-    </div>
     <div class="col-8">
       <div
         v-if="displayMode == displayModes.card"
@@ -63,11 +60,10 @@
 import NoteItemCard from "./NoteItemCart.vue";
 import NoteItemList from "./NoteItemList.vue";
 import NoteAddEdit from "./NoteAddEdit.vue";
-import Labels from '../labels/LabelList.vue'
+
 export default {
   name: "Notes",
   components: {
-    Labels,
     NoteItemCard,
     NoteItemList,
     NoteAddEdit,
