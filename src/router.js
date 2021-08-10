@@ -13,7 +13,10 @@ const router = createRouter({
     { path: '/dashboard', component: Dashboard },
     { path: '/tasks', component: Tasks },
     { path: '/notes', component: NotesView,
-      children: [{ path: 'new', component: NotesAddEdit }]
+      children: [
+        { path: 'new', component: NotesAddEdit }, 
+        { path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})', component: NotesAddEdit }
+      ]
     },
     { path: '/:pathMatch(.*)', component: NotFound }
   ],
