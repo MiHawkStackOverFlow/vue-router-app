@@ -12,13 +12,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a @click="currentComponent='dashboard'" class="nav-link active" aria-current="page" href="javascript:;">Dashboard</a>
+          <router-link to="/dashboard" class="nav-link-active" aria-current="page">Dashboard</router-link>
         </li>
         <li class="nav-item">
-          <a @click="currentComponent='notes'" class="nav-link" href="javascript:;">Notes</a>
+          <router-link to="/notes" class="nav-link-active" aria-current="page">Notes</router-link>
         </li>
         <li class="nav-item">
-          <a @click="currentComponent='tasks'" class="nav-link" href="javascript:;">Tasks</a>
+          <router-link to="/tasks" class="nav-link-active" aria-current="page">Tasks</router-link>
         </li>
        
       </ul>
@@ -27,29 +27,15 @@
   </div>
 </nav>
 <div class='container-fluid'>
-  <component :is="currentComponent"/>
-
-  </div>
+  <router-view></router-view>
+</div>
 </div>
 </template>
 
 <script>
- import Tasks from './components/todos/TodoItems.vue'
- import Dashboard from './components/Dashboard.vue'
- import Notes from './components/notes/Notes.vue'
 
 export default {
   name: 'App',
-  data(){
-    return{
-      currentComponent:'dashboard'
-    }
-  },
-  components: {
-       Tasks,
-     Notes,
-     Dashboard
-  }
 }
 </script>
 
@@ -59,5 +45,12 @@ export default {
 }
 .card-columns{
   column-count: 4;
+}
+.nav-item {
+  margin: 5px;
+}
+a {
+  color: white;
+  text-decoration: none;
 }
 </style>
