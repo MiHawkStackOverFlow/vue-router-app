@@ -19,17 +19,15 @@
         <i class="fa fa-list"></i>
       </button>
       
-      <button
-        @click="createNote"
-        type="button"
-        class="float-end btn btn-link"
-      ><i class="fa fa-plus"></i>
-      </button>
+     <router-link to="/notes/new" class="float-end btn btn-link">
+       <i class="fa fa-plus"></i>
+     </router-link>
     </div>
-    <div class="col-8">
+    <p></p>
+    <div class="col-12">
       <div
         v-if="displayMode == displayModes.card"
-       class="row row-cols-1 row-cols-md-4 g-4 m-1"
+       class="row row-cols-1 row-cols-md-4 g-4"
       >
        <div
           class="col"
