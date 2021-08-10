@@ -12,7 +12,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/dashboard" class="nav-link-active" aria-current="page">Dashboard</router-link>
+          <router-link to="/dashboard" custom class="nav-link-active" aria-current="page" v-slot="{ isActive, href, navigate }">
+            <a 
+              :href="href" 
+              @click="navigate" 
+              class="nav-link bg-danger" 
+              :class="isActive ? 'active': ''">
+                Dashboard
+            </a>
+          </router-link>
         </li>
         <li class="nav-item">
           <router-link to="/notes" class="nav-link-active" aria-current="page">Notes</router-link>
@@ -50,7 +58,13 @@ export default {
   margin: 5px;
 }
 a {
-  color: white;
+  color: grey;
   text-decoration: none;
+}
+.active {
+  color: white;
+}
+.nav-link {
+  padding: 0 5px 0 5px !important;
 }
 </style>
