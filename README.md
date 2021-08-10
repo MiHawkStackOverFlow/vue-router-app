@@ -5,6 +5,11 @@
 npm install
 ```
 
+## Project setup
+```
+npm install vue-router@4 // https://next.router.vuejs.org/installation.html#direct-download-cdn
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
