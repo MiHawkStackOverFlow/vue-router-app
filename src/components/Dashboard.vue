@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title">Unfinished Tasks</h5>
         <p class="card-text" v-if="$store.getters.unfinishedTaskCount > 0">
-          You have <b>{{ $store.getters.unfinishedTaskCount }}</b> uninished
+          You have <b>{{ $store.getters.unfinishedTaskCount }}</b> unfinished
           tasks
         </p>
         <p class="card-text text-success" v-else>
@@ -32,8 +32,8 @@
       <img class="card-img-top" src="https://i.picsum.photos/id/20/1200/300.jpg?hmac=8rrSN6gcVsYYzYJs87AlbxZVnO0M38r6eD9kKJq1P3Q" alt="Card image cap" />
       <div class="card-body">
         <h5 class="card-title">Unfinished Notes</h5>
-        <p class="card-text" v-if="$store.getters.uninishedNoteCount > 0">
-          You have <b>{{ $store.getters.uninishedNoteCount }}</b> uninished
+        <p class="card-text" v-if="$store.getters.unfinishedNoteCount > 0">
+          You have <b>{{ $store.getters.unfinishedNoteCount }}</b> unfinished
           notes
         </p>
         <p class="card-text text-success" v-else>

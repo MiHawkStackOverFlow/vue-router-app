@@ -35,7 +35,7 @@ export const store = createStore({
     allTasks(state) {
       return state.tasks
     },
-    uninishedNoteCount(state){
+    unfinishedNoteCount(state){
       return state.notes.filter(note => !note.done).length
     },
     unfinishedTaskCount(state) {
