@@ -17,7 +17,7 @@ export default {
   methods: {
     navigateBack() {
       let currentRoute = router.currentRoute.value.meta;
-      router.push({ name: currentRoute.redirectRouteName });
+      currentRoute.onClose();
     },
   },
 };

@@ -44,10 +44,17 @@ const router = createRouter({
         Navbar: NavbarComponent,
       },
       children: [
-        { path: "new", name: "newnote", component: NotesAddEdit },
         {
           meta: {
-            redirectRouteName: 'notes'
+            onClose:()=> { router.push({ name: 'notes'}) }
+          }, 
+          path: "new", 
+          name: "newnote", 
+          component: NotesAddEdit 
+        },
+        {
+          meta: {
+            onClose:()=> { router.push({ name: 'notes'}) }
           },
           name: "editnote",
           path: "edit/:noteId([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})",
