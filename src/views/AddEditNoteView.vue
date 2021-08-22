@@ -1,23 +1,23 @@
 <template>
-    <NoteAddEdit v-bind="$props" @close="navigateBack" />
+  <NoteAddEdit v-bind="$props" @close="navigateBack" />
 </template>
 <script>
-import router from '../router'
-import NoteAddEdit from '../components/notes/NoteAddEdit.vue'
+import router from "../router";
+import NoteAddEdit from "../components/notes/NoteAddEdit.vue";
 export default {
-    components:{
-        NoteAddEdit
+  components: {
+    NoteAddEdit,
+  },
+  props: {
+    id: {
+      type: String,
+      default: "",
     },
-    props:{
-        id:{
-            type:String,
-            default:''
-        }
+  },
+  methods: {
+    navigateBack() {
+      router.go(-1);
     },
-    methods:{
-         navigateBack() {
-         router.go(-1)
-    }
-    }
-}
+  },
+};
 </script>

@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import Dashboard from "./components/Dashboard.vue";
 import Tasks from "./components/todos/TodoItems.vue";
-import NotesAddEdit from "./components/notes/NoteAddEdit.vue";
+import NotesAddEdit from "./views/AddEditNoteView.vue";
 import NotesView from "./views/NotesView.vue";
 import NotFound from "./components/NotFound.vue";
 
