@@ -1,5 +1,5 @@
 <template>
-  <div class="row g-0">
+  <div class="row g-0" >
     <div class="col-12">
       <button
         v-if="displayMode != displayModes.card"
@@ -18,15 +18,15 @@
         <i class="fa fa-list"></i>
       </button>
 
-      <router-link to="/notes/new" class="float-end btn btn-link">
+      <button @click="createNote"  class="float-end btn btn-link">
         <i class="fa fa-plus"></i>
-      </router-link>
+      </button>
     </div>
     <div class="col-12">
       <div v-if="displayMode == displayModes.card" class="row g-0">
         <div class="col" :key="todo.id" v-for="todo in $store.getters.allNotes">
           <router-link
-            :to="'/notes/edit/' + todo.id"
+            :to="{name:'editnote', params:{ noteId: todo.id}}"
             custom
             v-slot="{ navigate }"
           >
@@ -44,12 +44,12 @@
         <router-link
           :key="todo.id"
           v-for="todo in $store.getters.allNotes"
-          :to="'/notes/edit/' + todo.id"
+          :to="{name:'editnote', params:{ noteId: todo.id}}"
           custom
           v-slot="{ navigate }"
         >
           <NoteItemList
-            @click="navigate"
+            @click="navigate(todo.id)"
             @delete="deleteNote(todo.id)"
             class="m-2"
             :value="todo"
@@ -58,11 +58,13 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
 import NoteItemCard from "./NoteItemCart.vue";
 import NoteItemList from "./NoteItemList.vue";
+import router from '../../router'
 export default {
   name: "Notes",
   components: {
@@ -79,10 +81,21 @@ export default {
   methods: {
     deleteNote(id) {
       this.$store.commit("deleteNote", id);
+    },
+    createNote(){
+      var noteCount = this.$store.getters.allNotes.length;
+      if(noteCount>=5){
+        alert('You cannot create more then 5 notes on the free tier')
+      }
+      else{
+        router.push({name:'newnote'})
+      }
     }
   },
 };
 </script>
+
+
 
 <style scoped>
 .note-card {

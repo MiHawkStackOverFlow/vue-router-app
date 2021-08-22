@@ -47,10 +47,9 @@ const router = createRouter({
         { path: "new", name: "newnote", component: NotesAddEdit },
         {
           name: "editnote",
-          path:
-            "edit/:noteId([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})",
+          path: "edit/:noteId([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})",
           component: NotesAddEdit,
-          props: (route) => ({ id: route.params.id }),
+          props: (route) => ({ id: route.params.noteId }),
         },
       ],
     },
