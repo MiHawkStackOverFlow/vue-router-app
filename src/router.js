@@ -46,6 +46,9 @@ const router = createRouter({
       children: [
         { path: "new", name: "newnote", component: NotesAddEdit },
         {
+          meta: {
+            redirectRouteName: 'notes'
+          },
           name: "editnote",
           path: "edit/:noteId([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})",
           component: NotesAddEdit,

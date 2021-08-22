@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     navigateBack() {
-      router.go(-1);
+      let currentRoute = router.currentRoute.value.meta;
+      router.push({ name: currentRoute.redirectRouteName });
     },
   },
 };
