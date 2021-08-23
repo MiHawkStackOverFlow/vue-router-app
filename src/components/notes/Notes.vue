@@ -83,13 +83,13 @@ export default {
       this.$store.commit("deleteNote", id);
     },
     createNote(){
-      var noteCount = this.$store.getters.allNotes.length;
-      if(noteCount>=5){
-        alert('You cannot create more then 5 notes on the free tier')
-      }
-      else{
+      // var noteCount = this.$store.getters.allNotes.length;
+      // if(noteCount>=5){
+      //   alert('You cannot create more then 5 notes on the free tier')
+      // }
+      // else{
         router.push({name:'newnote'})
-      }
+      //}
     }
   },
 };

@@ -28,7 +28,7 @@ const router = createRouter({
         Navbar: NavbarComponent,
       },
       meta: {
-        transition: 'zoom-down'
+        transition: "zoom-down",
       },
     },
     {
@@ -49,18 +49,23 @@ const router = createRouter({
       children: [
         {
           meta: {
-            onClose:()=> { router.push({ name: 'notes'}) }
-          }, 
-          path: "new", 
-          name: "newnote", 
-          component: NotesAddEdit 
+            onClose: () => {
+              router.push({ name: "notes" });
+            },
+          },
+          path: "new",
+          name: "newnote",
+          component: NotesAddEdit,
         },
         {
           meta: {
-            onClose:()=> { router.push({ name: 'notes'}) }
+            onClose: () => {
+              router.push({ name: "notes" });
+            },
           },
           name: "editnote",
-          path: "edit/:noteId([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})",
+          path:
+            "edit/:noteId([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})",
           component: NotesAddEdit,
           props: (route) => ({ id: route.params.noteId }),
         },
@@ -70,12 +75,23 @@ const router = createRouter({
   ],
   linkActiveClass: "active",
   linkExactActiveClass: "active",
+  scrollBehavior(to, from, savedPosition) {
+    console.log("to", to);
+    console.log("from", from);
+    console.log("savedPosition", savedPosition);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(savedPosition || { left: 0, top: 0 });
+      }, 1000);
+    });
+  },
 });
 
 router.afterEach((to, from) => {
-  console.log('to',to)
-  console.log('from',from)
-  to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
+  console.log("to", to);
+  console.log("from", from);
+  to.meta.transition = to.matched.length == 1 ? "bounce-right" : "bounce-left";
 });
 
 export default router;
