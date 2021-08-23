@@ -3,18 +3,24 @@
     <router-view name="Navbar"></router-view>
 
     <div class="container-fluid">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <AnimatedTransition name="bounce-left">
+          <component :is="Component"></component>
+        </AnimatedTransition>
+      </router-view>
     </div>
   </div>
 </template>
 
 <script>
+import AnimatedTransition from './components/transitions/AnimatedTransition.vue';
+
 export default {
   name: "App",
   data() {
     return {};
   },
-  components: {},
+  components: { AnimatedTransition },
 };
 </script>
 
