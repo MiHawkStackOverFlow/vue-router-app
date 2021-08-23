@@ -1,14 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-
-import Dashboard from "./components/Dashboard.vue";
-import Tasks from "./components/todos/TodoItems.vue";
-import NotesAddEdit from "./views/AddEditNoteView.vue";
-import NotesView from "./views/NotesView.vue";
-import NotFound from "./components/NotFound.vue";
-
 import { store } from "./store";
-import NavbarComponent from "./components/navigation/Navbar.vue";
-import Login from './components/auth/Login.vue';
+
+const Dashboard = () => import( './components/Dashboard.vue')
+const Tasks = () => import( './components/todos/TodoItems.vue')
+const NotesView = () => import( './views/NotesView.vue')
+const NotFound = () => import( './components/NotFound.vue')
+const NotesAddEdit = () => import( './views/AddEditNoteView.vue')
+const NavbarComponent = () => import('./components/navigation/Navbar.vue')
+const Login = () => import('./components/auth/Login.vue')
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,7 +16,7 @@ const router = createRouter({
       path: "/",
       redirect: (to) => {
         console.log("Redirect from ", to);
-        return { path: store.getters.startScreen };
+        return { path: store.getters.startScreen || 'dashboard' };
       },
     },
     { path: '/login', name: 'login', component: Login },
@@ -111,17 +110,17 @@ router.beforeEach((to) => {
   }
 });
 
-router.beforeResolve(async (to) => {
+router.beforeResolve(async () => {
   console.log('Before Resolve (Global)') 
-  if (to.meta.requiresMic) {
-    try {
-      await navigator.mediaDevices.getUserMedia({ audio: true })
-    }
-    catch (err) {
-      alert('Cannot proceed without allowing access to mic. Enable access and reload the page')
-      return false;
-    }
-  }
+  // if (to.meta.requiresMic) {
+  //   try {
+  //     await navigator.mediaDevices.getUserMedia({ audio: true })
+  //   }
+  //   catch (err) {
+  //     alert('Cannot proceed without allowing access to mic. Enable access and reload the page')
+  //     return false;
+  //   }
+  // }
 });
 
 router.afterEach((to) => {
