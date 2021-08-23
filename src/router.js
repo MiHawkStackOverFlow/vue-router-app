@@ -72,4 +72,10 @@ const router = createRouter({
   linkExactActiveClass: "active",
 });
 
+router.afterEach((to, from) => {
+  console.log('to',to)
+  console.log('from',from)
+  to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
+});
+
 export default router;
