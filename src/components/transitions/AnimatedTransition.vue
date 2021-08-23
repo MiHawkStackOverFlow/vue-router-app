@@ -22,7 +22,6 @@ export default {
   },
   computed: {
     enterActiveClass() {
-      console.log("name", this.name);
       switch (this.name) {
         case "bounce-left":
           return "animate__animated animate__bounceInRight";

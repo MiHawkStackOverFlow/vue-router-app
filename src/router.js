@@ -8,6 +8,7 @@ import NotFound from "./components/NotFound.vue";
 
 import { store } from "./store";
 import NavbarComponent from "./components/navigation/Navbar.vue";
+import Login from './components/auth/Login.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,6 +20,7 @@ const router = createRouter({
         return { path: store.getters.startScreen };
       },
     },
+    { path: '/login', name: 'login', component: Login },
     {
       path: "/dashboard",
       name: "dashboard",
@@ -48,7 +50,8 @@ const router = createRouter({
       path: "/notes",
       meta: {
         title: 'Note',
-        requiresMic:true,
+        requiresMic: true,
+        requiresAuth: true,
         transition: 'bounce-right'
       },
       name: "notes",
@@ -101,11 +104,14 @@ const router = createRouter({
   },
 });
 
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
   console.log('Before Each(Global)')
- 
-})
-router.beforeResolve(async (to, from) => {
+  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+    return { name: 'login' }
+  }
+});
+
+router.beforeResolve(async (to) => {
   console.log('Before Resolve (Global)') 
   if (to.meta.requiresMic) {
     try {
@@ -116,11 +122,12 @@ router.beforeResolve(async (to, from) => {
       return false;
     }
   }
-})
-router.afterEach((to, from) => {
+});
+
+router.afterEach((to) => {
   console.log('After Each (Global)')
   document.title= "Globomantics: " + to.meta.title;
   to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
-})
+});
 
 export default router;

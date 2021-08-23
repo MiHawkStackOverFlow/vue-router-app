@@ -46,6 +46,9 @@
           <li class="nav-item">
             <router-link to="/tasks" class="nav-link ">Tasks</router-link>
           </li>
+          <li v-if="$store.getters.isLoggedIn" class="nav-item">
+            <a @click="logout" class="nav-link ">Logout</a>
+          </li>
         </ul>
       </div>
       <form class="form-inline">
@@ -59,6 +62,12 @@ import StartScreenPicker from "../StartScreenPicker.vue";
 export default {
   components: {
     StartScreenPicker,
+  },
+  methods: {
+    logout() {
+      this.$store.commit("isLoggedIn", false);
+      this.$router.push("/");
+    },
   },
 };
 </script>
