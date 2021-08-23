@@ -27,6 +27,9 @@ const router = createRouter({
         default: Dashboard,
         Navbar: NavbarComponent,
       },
+      meta: {
+        transition: 'zoom-down'
+      },
     },
     {
       path: "/tasks",
